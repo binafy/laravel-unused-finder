@@ -1,0 +1,19 @@
+{
+    "name": "binafy/laravel-unused-finder",
+    "description": "Find the unused code",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Binafy\\LaravelUnusedFinder\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Milwad",
+            "email": "milwad.dev@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}
