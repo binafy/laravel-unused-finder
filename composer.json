@@ -3,11 +3,6 @@
     "description": "Find the unused code",
     "type": "library",
     "license": "MIT",
-    "autoload": {
-        "psr-4": {
-            "Binafy\\LaravelUnusedFinder\\": "src/"
-        }
-    },
     "authors": [
         {
             "name": "Milwad",
@@ -23,6 +18,16 @@
     "require-dev": {
         "pestphp/pest-plugin-laravel": "^1.4.0|^2.0.0",
         "orchestra/testbench": "^8.0|^9.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Binafy\\LaravelUnusedFinder\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
     },
     "config": {
         "sort-packages": true,
