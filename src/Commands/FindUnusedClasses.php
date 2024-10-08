@@ -38,7 +38,7 @@ class FindUnusedClasses extends Command
         if (! $this->option('path')) {
             $this->path = text('Write the directory path:', default: 'app', required: true);
         }
-
+dd(base_path($this->path));
         collect($this->path)->each(function ($path) {
             $phpFiles = collect(File::allFiles($path))
                 ->filter(fn ($filename) => Str::endsWith($filename, '.php'))
