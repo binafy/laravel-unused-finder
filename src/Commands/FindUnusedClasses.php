@@ -65,20 +65,31 @@ class FindUnusedClasses extends Command
             return;
         }
 
-        collect(base_path($this->path))->each(function ($path) {
-            collect(File::allFiles($path))
-                ->filter(fn ($filename) => Str::endsWith($filename, '.php'))
-                ->each(function ($phpFile) {
-                    $fileContents = file_get_contents($phpFile);
+        $exceptClasses = config('laravel-unused-finder.classes.except', []);
 
-                    if (preg_match('/class\s+(\w+)/', $fileContents, $className) === 1) {
-                        $this->classNames[$className[1]] = $phpFile->getPathName();
-                        $fileContents = str_replace($className[1], Str::random(), $fileContents);
-                    }
+        collect(base_path($this->path))
+            ->each(function ($path) use ($exceptClasses) {
+                collect(File::allFiles($path))
+                    ->filter(function ($filename) use ($exceptClasses) {
+                        foreach ($exceptClasses as $exceptClass) {
+                            if ($filename->getRealPath() === base_path($exceptClass)) {
+                                continue;
+                            }
 
-                    $this->massiveString .= $fileContents;
+                            return Str::endsWith($filename, '.php');
+                        }
+                    })
+                    ->each(function (\Symfony\Component\Finder\SplFileInfo $file) {
+                        $fileContents = file_get_contents($file);
+
+                        if (preg_match('/class\s+(\w+)/', $fileContents, $className) === 1) {
+                            $this->classNames[$className[1]] = $file->getPathName();
+                            $fileContents = str_replace($className[1], Str::random(), $fileContents);
+                        }
+
+                        $this->massiveString .= $fileContents;
+                    });
                 });
-            });
 
         foreach ($this->classNames as $className => $files) {
             if (preg_match("/$className/", $this->massiveString) === 1
