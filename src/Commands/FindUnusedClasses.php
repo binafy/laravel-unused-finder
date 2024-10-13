@@ -46,7 +46,7 @@ class FindUnusedClasses extends Command
     protected array $controllerNames = [];
 
     /**
-     *
+     * The file content.
      *
      * @var string
      */
@@ -66,14 +66,14 @@ class FindUnusedClasses extends Command
         }
 
         collect(base_path($this->path))->each(function ($path) {
-            $phpFiles = collect(File::allFiles($path))
+            collect(File::allFiles($path))
                 ->filter(fn ($filename) => Str::endsWith($filename, '.php'))
                 ->each(function ($phpFile) {
                     $fileContents = file_get_contents($phpFile);
 
                     if (preg_match('/class\s+(\w+)/', $fileContents, $className) === 1) {
                         $this->classNames[$className[1]] = $phpFile->getPathName();
-                        $fileContents = str_replace($className[1], Str::random(16), $fileContents);
+                        $fileContents = str_replace($className[1], Str::random(), $fileContents);
                     }
 
                     $this->massiveString .= $fileContents;
