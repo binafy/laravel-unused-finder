@@ -17,5 +17,7 @@ class LaravelUnusedFinderServiceProvider extends ServiceProvider
             FindUnusedClasses::class,
             FindUnusedMethods::class,
         ]);
+
+        $this->mergeConfigFrom(__DIR__ . '/../../config/laravel-unused-finder.php', 'laravel-unused-finder');
     }
 }
