@@ -8,7 +8,7 @@ return [
         /*
          * Except some files to check it is used or not.
          */
-        'except' => [
+        'excluded' => [
             'app/Http/Commands/FindUnusedClasses.php',
         ],
     ]
