@@ -3,6 +3,7 @@
 namespace Binafy\LaravelUnusedFinder\Providers;
 
 use Binafy\LaravelUnusedFinder\Commands\FindUnusedClasses;
+use Binafy\LaravelUnusedFinder\Commands\FindUnusedMethods;
 use Illuminate\Support\ServiceProvider;
 
 class LaravelUnusedFinderServiceProvider extends ServiceProvider
@@ -14,6 +15,7 @@ class LaravelUnusedFinderServiceProvider extends ServiceProvider
     {
         $this->commands([
             FindUnusedClasses::class,
+            FindUnusedMethods::class,
         ]);
     }
 }
