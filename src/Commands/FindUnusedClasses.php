@@ -65,7 +65,7 @@ class FindUnusedClasses extends Command
             return;
         }
 
-        $exceptClasses = config('laravel-unused-finder.classes.except', []);
+        $exceptClasses = config('laravel-unused-finder.classes.excluded', []);
 
         collect(base_path($this->path))
             ->each(function ($path) use ($exceptClasses) {
@@ -107,7 +107,5 @@ class FindUnusedClasses extends Command
         })->values()->toArray();
 
         table(['Class Name', 'Class Path'], $arrayOfArrays);
-
-        // TODO: Add ignore some paths from config
     }
 }
