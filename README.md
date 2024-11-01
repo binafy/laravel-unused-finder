@@ -18,3 +18,11 @@ So after that, the package goes and find the unused classes and show you all unu
 
 ![Find Unused Classes](/art/find-classes.png "Find Unused Classes")
 
+<a name="donate"></a>
+## Donate
+
+If this package is helpful for you, you can buy a coffee for me :) ❤️
+
+- Iraninan Gateway: https://daramet.com/milwad_khosravi
+- Paypal Gateway: SOON
+- MetaMask Address: `0xf208a562c5a93DEf8450b656c3dbc1d0a53BDE58`
